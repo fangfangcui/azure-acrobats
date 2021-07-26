@@ -1,12 +1,55 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
+import UserService from "../services/user.service";
+import { deleteUser } from "../actions/user";
+import AuthService from "../services/auth.service";
 
 class Profile extends Component {
 
+  constructor(props) {
+    super(props);
+    this.getUser = this.getThisUser.bind(this);
+    this.removeUser = this.removeUser.bind(this);
+
+    this.state = {
+      currentUser: {
+        id: null,
+        username: "",
+        email: "",
+      },
+      message: "",
+    };
+  }
+
+
+
+  getThisUser(id) {
+    UserService.getUser(id).then((response) => {
+      this.setState({
+        currentUser: response.data,
+      });
+      console.log(response.data);
+    }).catch((e) => {
+      console.log(e);
+    })
+  }
+
+  removeUser(id) {
+    this.props.deleteUser(id).then(() => {
+      this.props.history.push("/");
+      AuthService.logout();
+      this.state.currentUser = undefined;
+      window.location.reload();
+      this.forceUpdate();
+    }).catch((e) => {
+      console.log(e);
+    })
+  }
+
+
   render() {
     const { user: currentUser } = this.props;
-
     if (!currentUser) {
       return <Redirect to="/login" />;
     }
@@ -15,34 +58,29 @@ class Profile extends Component {
       <div className="container">
         <header className="jumbotron">
           <h3>
-            <strong>{currentUser.username}</strong> Profile
+            Welcome home, <strong>{currentUser.username}</strong>!
           </h3>
         </header>
         <p>
-          <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
-          {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
+          <strong>Token:</strong> {currentUser.accessToken}
         </p>
         <p>
-          <strong>Id:</strong> {currentUser.id}
+          The email you have registered with is: <strong>{currentUser.email}</strong>
         </p>
         <p>
-          <strong>Email:</strong> {currentUser.email}
+          If this is not correct, you can delete your account and create a new one:
         </p>
-        <strong>Authorities:</strong>
-        <ul>
-          {currentUser.roles &&
-            currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
-        </ul>
+        <button className="btn btn-danger btn-block" onClick={() => {this.removeUser(currentUser.id)}}>Delete Account</button>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  const { user } = state.auth;
+function mapStateToProps(state){
+  const {user} = state.auth;
   return {
     user,
   };
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, {deleteUser})(Profile);

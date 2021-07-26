@@ -6,3 +6,6 @@ export const LOGOUT = "LOGOUT";
 
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
+
+export const RETRIEVE_USER = "RETRIEVE_USER";
+export const DELETE_USER = "DELETE_USER";

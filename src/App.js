@@ -42,8 +42,6 @@ class App extends Component {
     if (user) {
       this.setState({
         currentUser: user,
-        showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
-        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
       });
     }
     
@@ -59,15 +57,13 @@ class App extends Component {
   logOut() {
     AuthService.logout();
     this.setState({
-      showModeratorBoard: false,
-      showAdminBoard: false,
       currentUser: undefined,
     });
     window.location.reload();
   }
 
   render() {
-    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+    const { currentUser } = this.state;
 
     return (
         <div>
@@ -80,6 +76,11 @@ class App extends Component {
 
             {currentUser ? (
               <div className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link to={"/home"} className="nav-link">
+                    Home
+                  </Link>
+                </li>
                 <li className="nav-item">
                   <Link to={"/login"} className="nav-link" onClick={this.logOut}>
                     Log Out
@@ -98,8 +99,7 @@ class App extends Component {
               <Route exact path={"/"} component={Login} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-              <Route exact path="/profile" component={Profile} />
-              <Route path="/home" component={BoardUser} />
+              <Route exact path="/home" component={Profile} />
             </Switch>
           </div>
         </div>
