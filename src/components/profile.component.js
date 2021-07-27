@@ -62,15 +62,12 @@ class Profile extends Component {
           </h3>
         </header>
         <p>
-          <strong>Token:</strong> {currentUser.accessToken}
-        </p>
-        <p>
           The email you have registered with is: <strong>{currentUser.email}</strong>
         </p>
         <p>
           If this is not correct, you can delete your account and create a new one:
         </p>
-        <button className="btn btn-danger btn-block" onClick={() => {this.removeUser(currentUser.id)}}>Delete Account</button>
+        <button className="btn btn-danger btn-block" onClick={() => {if(window.confirm('Delete account?')){this.removeUser(currentUser.id)}}}>Delete Account</button>
       </div>
     );
   }

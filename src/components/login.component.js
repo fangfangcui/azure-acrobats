@@ -58,7 +58,7 @@ class Login extends Component {
     if (this.checkBtn.context._errors.length === 0) {
       dispatch(login(this.state.username, this.state.password))
         .then(() => {
-          history.push("/home");
+          history.push("/profile");
           window.location.reload();
         })
         .catch(() => {
@@ -77,7 +77,7 @@ class Login extends Component {
     const { isLoggedIn, message } = this.props;
 
     if (isLoggedIn) {
-      return <Redirect to="/home" />;
+      return <Redirect to="/profile" />;
     }
 
     return (
