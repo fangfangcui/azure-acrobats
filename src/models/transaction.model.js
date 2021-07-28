@@ -1,7 +1,9 @@
 module.exports = (sequelize, Sequelize) => {
-    const Transaction = sequelize.define("transactions", {
+    const Transaction = sequelize.define("trans_actions", {
       basket_num: {
         type: Sequelize.STRING,
+        primaryKey: true,
+        unique: true,
       },
       hshd_num: {
         type: Sequelize.STRING,

@@ -33,7 +33,7 @@ class Dashboard extends Component {
                         <strong>Dashboard</strong>
                     </h3>
                 </header>
-                <ExampleScatter />
+                <ExampleScatter/>
             </div>
         );
     }

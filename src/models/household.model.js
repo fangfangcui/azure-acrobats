@@ -2,7 +2,8 @@ module.exports = (sequelize, Sequelize) => {
     const Household = sequelize.define("households", {
       hshd_num: {
         type: Sequelize.STRING,
-        primaryKey: true
+        primaryKey: true,
+        unique: true
       },
       loyalty_flag: {
         type: Sequelize.STRING

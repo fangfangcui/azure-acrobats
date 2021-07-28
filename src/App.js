@@ -16,6 +16,7 @@ import { clearMessage } from "./actions/message";
 
 import { history } from './helpers/history';
 import Households from "./components/households.component";
+import Transactions from "./components/transactions.component";
 
 class App extends Component {
   constructor(props) {
@@ -87,6 +88,11 @@ class App extends Component {
                   </Link>
                 </li>
                 <li className="nav-item">
+                  <Link to={"/transactions"} className="nav-link">
+                    Transactions
+                  </Link>
+                </li>
+                <li className="nav-item">
                   <Link to={"/login"} className="nav-link" onClick={this.logOut}>
                     Log Out
                   </Link>
@@ -106,6 +112,7 @@ class App extends Component {
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/households" component={Households} />
+              <Route exact path="/transactions" component={Transactions} />
             </Switch>
           </div>
         </div>
@@ -116,9 +123,11 @@ class App extends Component {
 function mapStateToProps(state) {
   const { user } = state.auth;
   const { household } = state.household;
+  const { transaction } = state.transaction;
   return {
     user,
     household,
+    transaction
   };
 }
 

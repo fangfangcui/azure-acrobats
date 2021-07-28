@@ -1,44 +1,48 @@
 import React, { Component } from "react";
-import {Line} from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 
-const state = {
-    labels: ['January', 'February', 'March',
-             'April', 'May'],
-    datasets: [
-      {
-        label: 'Rainfall',
-        fill: false,
-        lineTension: 0.5,
-        backgroundColor: 'rgba(75,192,192,1)',
-        borderColor: 'rgba(0,0,0,1)',
-        borderWidth: 2,
-        data: [65, 59, 80, 81, 56]
-      }
-    ]
-  }
+class ExampleScatter extends Component {
 
-
-class ExampleScatter extends Component{
-    render(){
-        return(
+    render() {
+        return (
             <div>
-                <Line data={state} options={{
-                    scales: {
-                        y: {
-                            title:{
-                                display:true,
-                                text: 'Average Rainfall per month',
-                                fontSize: 20,
-                            },
-                            legend:{
-                                display: true,
-                                position: 'start'
-                            }
-
+                <Line
+                    height={600} width={1000}
+                    data={
+                        {
+                            labels: this.props.labels,
+                            datasets: [
+                                {
+                                    label: false,
+                                    fill: false,
+                                    lineTension: 0.5,
+                                    backgroundColor: 'rgba(75,192,192,1)',
+                                    borderColor: 'rgba(0,0,0,1)',
+                                    borderWidth: 2,
+                                    data: this.props.data
+                                }
+                            ]
                         }
                     }
-                }}/>
+                    options={{
+                        plugins: {
+                            legend: {
+                                display: false,
+                            }
+                        },
+
+                        scales: {
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Total Amount Spent in US Dollars',
+                                    fontSize: 20,
+                                }
+
+                            }
+                        }
+                    }} />
             </div>
         );
     }

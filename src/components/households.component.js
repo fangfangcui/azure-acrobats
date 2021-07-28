@@ -10,21 +10,6 @@ class Household extends Component {
         this.props.dispatch(fetchHouseholds());
     }
 
-
-    // refreshData() {
-    //     this.setState({
-    //         currentHousehold: null,
-    //         currentIndex: -1,
-    //     });
-    // }
-
-    // setActiveHousehold(household, index) {
-    //     this.setState({
-    //         currentHousehold: household,
-    //         currentIndex: index,
-    //     });
-    // }
-
     render() {
         let error = this.props.households.error;
         let loading = this.props.households.loading;

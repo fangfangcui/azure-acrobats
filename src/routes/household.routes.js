@@ -4,7 +4,7 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Retrieve a single Tutorial with id
-    router.get("/", households.findAllHouseHolds);
+    router.get("/households", households.findAllHouseHolds);
 
-    app.use('/api/households', router);
+    app.use('/api', router);
   };
