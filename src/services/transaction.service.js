@@ -9,10 +9,6 @@ class TransactionService {
     return http.get(API_URL + 'transactions');
   }
 
-  getSumHouseholdProducts(){
-    return http.get(API_URL + 'household-products');
-  }
-
 }
 
 export default new TransactionService();

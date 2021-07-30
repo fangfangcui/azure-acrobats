@@ -24,9 +24,9 @@ export const retrieveTransactionsBegin = () => ({
     type: RETRIEVE_TRANSACTIONS_BEGIN,
 });
 
-export const retrieveTransactionsSuccess = households => ({
+export const retrieveTransactionsSuccess = transactions => ({
     type: RETRIEVE_TRANSACTIONS_SUCCESS,
-    payload: households
+    payload: transactions
 });
 
 export const retrieveTransactionsFail = error => ({

@@ -8,15 +8,15 @@ import "./App.css";
 import Login from "./components/login.component";
 import Register from "./components/register.component";
 import Profile from "./components/profile.component";
-import Dashboard from "./components/dashboard.component";
+import ImportData from "./components/import-data.component";
 import EventBus from "./common/EventBus";
 import AuthService from "./services/auth.service";
+import OneA from "./components/onea.component"
 
 import { clearMessage } from "./actions/message";
 
 import { history } from './helpers/history';
-import Households from "./components/households.component";
-import Transactions from "./components/transactions.component";
+import Transactions from "./components/oneb.component";
 
 class App extends Component {
   constructor(props) {
@@ -78,18 +78,18 @@ class App extends Component {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={"/dashboard"} className="nav-link">
-                    Dashboard
+                  <Link to={"/onea"} className="nav-link">
+                    Question 1A
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={"/households"} className="nav-link">
-                    Households
+                  <Link to={"/oneb"} className="nav-link">
+                    Question 1B
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={"/transactions"} className="nav-link">
-                    Transactions
+                  <Link to={"/import"} className="nav-link">
+                    Import Data
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -109,10 +109,10 @@ class App extends Component {
             <Switch>
               <Route exact path={"/", "/login"} component={Login} />
               <Route exact path="/register" component={Register} />
-              <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/import" component={ImportData} />
               <Route exact path="/profile" component={Profile} />
-              <Route exact path="/households" component={Households} />
-              <Route exact path="/transactions" component={Transactions} />
+              <Route exact path="/onea" component={OneA} />
+              <Route exact path="/oneb" component={Transactions} />
             </Switch>
           </div>
         </div>
@@ -124,10 +124,12 @@ function mapStateToProps(state) {
   const { user } = state.auth;
   const { household } = state.household;
   const { transaction } = state.transaction;
+  const { category } = state.transaction;
   return {
     user,
     household,
-    transaction
+    transaction,
+    category
   };
 }
 

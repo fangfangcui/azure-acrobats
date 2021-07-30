@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 
 
-class ExampleScatter extends Component {
+class LineGraph extends Component {
 
     render() {
         return (
@@ -29,6 +29,13 @@ class ExampleScatter extends Component {
                         plugins: {
                             legend: {
                                 display: false,
+                            },
+                            title: {
+                                display: true,
+                                text: this.props.title,
+                                font: {
+                                    size: 30,
+                                }
                             }
                         },
 
@@ -36,10 +43,20 @@ class ExampleScatter extends Component {
                             y: {
                                 title: {
                                     display: true,
-                                    text: 'Total Amount Spent in US Dollars',
-                                    fontSize: 20,
+                                    text: this.props.yaxis,
+                                    font: {
+                                        size: 25,
+                                    }
                                 }
-
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: this.props.xaxis,
+                                    font: {
+                                        size: 25,
+                                    }
+                                }
                             }
                         }
                     }} />
@@ -48,4 +65,4 @@ class ExampleScatter extends Component {
     }
 }
 
-export default ExampleScatter;
+export default LineGraph;
